@@ -1,0 +1,11 @@
+{
+  "name": "high-ping",
+  "version": "1.0.0",
+  "description": "faster e-learning mvp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ali Elganzory",
+  "license": "MIT"
+}
