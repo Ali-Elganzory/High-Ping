@@ -1,7 +1,7 @@
 import eventlet
 import socketio
 
-sio = socketio.Server()
+sio = socketio.Server(async_mode='eventlet')
 app = socketio.WSGIApp(sio)
 
 rooms = {}
@@ -53,5 +53,4 @@ def disconnect(sid):
 
 
 if __name__ == "__main__":
-    eventlet.wsgi.server(eventlet.listen(('', 5000)), app)
-
+    eventlet.wsgi.server(eventlet.listen(('', 5000)), app, debug=True)

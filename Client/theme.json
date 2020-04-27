@@ -1,0 +1,158 @@
+{
+     "defaults":
+     {
+         "colours":
+         {
+             "normal_bg":"#45494e",
+             "hovered_bg":"#35393e",
+             "disabled_bg":"#25292e",
+             "selected_bg":"#193754",
+             "dark_bg":"#15191e",
+             "normal_text":"#c5cbd8",
+             "hovered_text":"#FFFFFF",
+             "selected_text":"#FFFFFF",
+             "disabled_text":"#6d736f",
+             "link_text": "#0000EE",
+             "link_hover": "#2020FF",
+             "link_selected": "#551A8B",
+             "text_shadow": "#777777",
+             "normal_border": "#DDDDDD",
+             "hovered_border": "#B0B0B0",
+             "disabled_border": "#808080",
+             "selected_border": "#8080B0",
+             "active_border": "#8080B0",
+             "filled_bar":"#f4251b",
+             "unfilled_bar":"#CCCCCC"
+         }
+     },
+
+     "label":
+     {
+         "colours":
+         {
+             "dark_bg": "#343a40",
+             "normal_text": "#ffffff"
+         },
+
+         "font":
+         {
+             "name": "Roboto",
+             "size": 12,
+             "regular_path": "fonts/Roboto-Regular.ttf",
+             "bold_path": "fonts/Roboto-Bold.ttf"
+         }
+     },
+
+     "high_ping":
+     {
+         "colours":
+         {
+             "normal_text": "#ffc107"
+         },
+
+         "font":
+         {
+             "name": "Roboto",
+             "size": 30,
+             "bold": 1
+         }
+     },
+
+     "welcome":
+     {
+         "colours":
+         {
+             "normal_text": "#eeeeee"
+         },
+
+         "font":
+         {
+             "name": "Roboto",
+             "size": 28,
+             "bold": 1
+         }
+     },
+
+     "text_entry_line":
+     {
+         "colours":
+         {
+             "dark_bg": "#ffffff",
+             "selected_bg": "#55595e",
+             "normal_text": "#000000",
+             "selected_text": "#FFFFFF",
+             "normal_border": "#FFFFFF"
+         },
+
+         "misc":
+         {
+             "shape": "rounded_rectangle",
+             "shape_corner_radius": 5,
+             "border_width": "2",
+             "shadow_width": "2",
+             "padding": "6,4"
+         }
+     },
+
+     "button":
+     {
+         "colours":
+         {
+             "normal_bg":"#ffc107",
+             "hovered_bg":"#e0b030",
+             "disabled_bg":"#25292e",
+             "selected_bg":"#193754",
+             "active_bg":"#193754",
+             "dark_bg":"#15191e",
+             "normal_text":"#ffffff",
+             "hovered_text":"#FFFFFF",
+             "selected_text":"#FFFFFF",
+             "disabled_text":"#6d736f",
+             "active_text":"#FFFFFF",
+             "normal_border": "#ffc107",
+             "hovered_border": "#ffc107",
+             "disabled_border": "#ffc107",
+             "selected_border": "#ffc107",
+             "active_border": "#ffc107"
+         },
+
+         "font":
+         {
+             "name": "Roboto",
+             "size": 14,
+             "regular_path": "fonts/Roboto-Regular.ttf",
+             "bold_path": "fonts/Roboto-Bold.ttf"
+         },
+
+         "misc":
+         {
+             "tool_tip_delay": "1.5",
+             "shape": "rounded_rectangle",
+             "shape_corner_radius": 5,
+             "border_width": 2
+         }
+     },
+
+     "create_room":
+     {
+         "colours":
+         {
+             "normal_bg":"#343a40",
+             "hovered_bg":"#e0b030",
+             "disabled_bg":"#25292e",
+             "selected_bg":"#193754",
+             "active_bg":"#193754",
+             "dark_bg":"#15191e",
+             "normal_text":"#ffc107",
+             "hovered_text":"#FFFFFF",
+             "selected_text":"#FFFFFF",
+             "disabled_text":"#6d736f",
+             "active_text":"#FFFFFF",
+             "normal_border": "#ffc107",
+             "hovered_border": "#ffc107",
+             "disabled_border": "#808080",
+             "selected_border": "#ffc107",
+             "active_border": "#ffc107"
+         }
+     }
+ }
