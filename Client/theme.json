@@ -38,8 +38,8 @@
          {
              "name": "Roboto",
              "size": 12,
-             "regular_path": "fonts/Roboto-Regular.ttf",
-             "bold_path": "fonts/Roboto-Bold.ttf"
+             "regular_path": "assets/fonts/Roboto-Regular.ttf",
+             "bold_path": "assets/fonts/Roboto-Bold.ttf"
          }
      },
 
@@ -70,6 +70,53 @@
              "name": "Roboto",
              "size": 28,
              "bold": 1
+         }
+     },
+
+     "error_label":
+     {
+         "colours":
+         {
+             "normal_text": "#dc3545"
+         },
+
+         "font":
+         {
+             "name": "Roboto",
+             "size": 12,
+             "bold": 0
+         }
+     },
+
+     "room_title":
+     {
+         "colours":
+         {
+             "dark_bg": "#ffffff",
+             "normal_text": "#343a40"
+         },
+
+         "font":
+         {
+             "name": "Roboto",
+             "size": 18,
+             "bold": 1
+         }
+     },
+
+     "client_name":
+     {
+         "colours":
+         {
+             "dark_bg": "#ffffff",
+             "normal_text": "#343a40"
+         },
+
+         "font":
+         {
+             "name": "Roboto",
+             "size": 18,
+             "bold": 0
          }
      },
 
@@ -120,8 +167,8 @@
          {
              "name": "Roboto",
              "size": 14,
-             "regular_path": "fonts/Roboto-Regular.ttf",
-             "bold_path": "fonts/Roboto-Bold.ttf"
+             "regular_path": "assets/fonts/Roboto-Regular.ttf",
+             "bold_path": "assets/fonts/Roboto-Bold.ttf"
          },
 
          "misc":
@@ -153,6 +200,30 @@
              "disabled_border": "#808080",
              "selected_border": "#ffc107",
              "active_border": "#ffc107"
+         }
+     },
+
+     "logout":
+     {
+         "images":
+         {
+             "normal_image": {
+                 "path": "assets/images/logout2.png"
+             },
+             "hovered_image": {
+                 "path": "assets/images/logout2.png"
+             },
+             "selected_image": {
+                 "path": "assets/images/logout2.png"
+             },
+             "disabled_image": {
+                 "path": "assets/images/logout2.png"
+             }
+         },
+
+         "misc":
+         {
+             "shape_corner_radius": 10
          }
      }
  }
