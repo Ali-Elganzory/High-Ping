@@ -5,7 +5,7 @@ from network import Network
 
 pygame.init()
 
-pygame.display.set_caption('Quick Start')
+pygame.display.set_caption('High Ping')
 window_surface = pygame.display.set_mode((800, 600))
 
 login_screen_background = pygame.Surface((800, 600))
@@ -124,6 +124,9 @@ def run_app():
 
 
 def validate_login(name, room, create):
+    name_error_label.set_text("")
+    room_error_label.set_text("")
+
     if len(name_text_field.text) < 1:
         name_error_label.set_text("Please, enter your name")
         if len(room_text_field.text) < 1:
@@ -131,9 +134,6 @@ def validate_login(name, room, create):
     elif len(room_text_field.text) < 1:
         room_error_label.set_text("Please, enter the room name")
     else:
-        name_error_label.set_text("")
-        room_error_label.set_text("")
-
         def entered_room(response):
             if "created" in response:
                 if response["created"]:
