@@ -26,6 +26,9 @@ class Network(object):
     def leave_room(self, room):
         sio.emit('leave_room', room)
 
+    def send_screen_update(self, screen_update):
+        sio.emit('screen_update', screen_update)
+
 
 class MainNamespace(socketio.ClientNamespace):
     def on_connect(self):
