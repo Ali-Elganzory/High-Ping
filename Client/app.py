@@ -108,6 +108,7 @@ def run_app():
                     elif event.ui_element == create_room_button:
                         validate_login(name_text_field.text, room_text_field.text, True)
                     elif event.ui_element == logout_button:
+                        # network.send_screen_update("klaaam gmeeel") -- for testing
                         network.leave_room(room_title_label.text)
                         background = login_screen_background
                         manager = login_screen_manager

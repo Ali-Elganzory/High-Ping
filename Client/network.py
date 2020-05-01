@@ -37,14 +37,14 @@ class MainNamespace(socketio.ClientNamespace):
     def on_disconnect(self):
         print("[Client] disconnected")
 
-    def someone_entered(self, data):
+    def on_someone_entered(self, data):
         print(data)
 
-    def someone_left(self, data):
+    def on_someone_left(self, data):
         print(data)
 
-    def room_closed(self, data):
+    def on_room_closed(self, data):
         print(data)
 
-    def screen_update(self, screen_update):
+    def on_screen_update(self, screen_update):
         print(screen_update)

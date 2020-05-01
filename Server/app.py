@@ -65,8 +65,8 @@ def disconnect(sid):
     if sid in instructors:
         sio.emit('room_closed', f"Host left; thus, {instructors[sid]} is closed", room=instructors[sid])
         rooms.pop(instructors[sid])
-        instructors.pop(sid)
         sio.close_room(instructors[sid])
+        instructors.pop(sid)
     elif sid in clients_in_rooms:
         sio.emit('someone left', f"{clients_in_rooms[sid]['name']} left the room", room=clients_in_rooms[sid]['room'])
         rooms[clients_in_rooms[sid]["room"]]["clients"].pop(sid)
