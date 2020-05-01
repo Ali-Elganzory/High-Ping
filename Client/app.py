@@ -1,5 +1,6 @@
 import pygame
 import pygame_gui
+from vision import Instructor_Encoder
 
 from network import Network
 
@@ -92,7 +93,9 @@ def run_app():
 
     clock = pygame.time.Clock()
     is_running = True
-
+    validated = False
+    instructor = False
+    IS = None
     while is_running:
         time_delta = clock.tick(60) / 1000.0
 
@@ -105,19 +108,25 @@ def run_app():
                 if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                     if event.ui_element == enter_room_button:
                         validate_login(name_text_field.text, room_text_field.text, False)
+                        validated = True
                     elif event.ui_element == create_room_button:
                         validate_login(name_text_field.text, room_text_field.text, True)
+                        validated = True
+                        instructor = True
+                        IS = Instructor_Encoder(2,20)
+                        IS.start_file_enc('video_1.mp4',1100,5300,network)
                     elif event.ui_element == logout_button:
-                        # network.send_screen_update("klaaam gmeeel") -- for testing
                         network.leave_room(room_title_label.text)
                         background = login_screen_background
                         manager = login_screen_manager
+                        validated = False
                         continue
 
             manager.process_events(event)
 
         manager.update(time_delta)
-
+        if validated and instructor:
+            IS.send_data_file(network)
         window_surface.blit(background, (0, 0))
         manager.draw_ui(window_surface)
 
@@ -157,7 +166,7 @@ def validate_login(name, room, create):
             manager = room_screen_manager
 
         if create:
-            network.create_room(name, room, on_response=entered_room)
+            network.create_room(name, room, on_response=entered_room)(network)
         else:
             network.enter_room(name, room, on_response=entered_room)
 

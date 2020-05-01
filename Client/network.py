@@ -1,7 +1,8 @@
 import socketio
+from vision import Client_Reconstructor
 
 sio = socketio.Client()
-
+CR = Client_Reconstructor()
 
 class Network(object):
     def __init__(self):
@@ -47,4 +48,5 @@ class MainNamespace(socketio.ClientNamespace):
         print(data)
 
     def on_screen_update(self, screen_update):
-        print(screen_update)
+        current_bin_frame = CR.receive_data(screen_update)
+        # Draw image on pygame
