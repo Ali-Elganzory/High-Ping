@@ -1,8 +1,8 @@
 import pygame
 import pygame_gui
-from vision import Instructor_Encoder
 
 from network import Network
+from vision import Instructor_Encoder
 
 pygame.init()
 
@@ -96,6 +96,7 @@ def run_app():
     validated = False
     instructor = False
     IS = None
+
     while is_running:
         time_delta = clock.tick(60) / 1000.0
 
@@ -108,13 +109,8 @@ def run_app():
                 if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                     if event.ui_element == enter_room_button:
                         validate_login(name_text_field.text, room_text_field.text, False)
-                        validated = True
                     elif event.ui_element == create_room_button:
                         validate_login(name_text_field.text, room_text_field.text, True)
-                        validated = True
-                        instructor = True
-                        IS = Instructor_Encoder(2,20)
-                        IS.start_file_enc('video_1.mp4',1100,5300,network)
                     elif event.ui_element == logout_button:
                         network.leave_room(room_title_label.text)
                         background = login_screen_background
@@ -145,13 +141,20 @@ def validate_login(name, room, create):
         room_error_label.set_text("Please, enter the room name")
     else:
         def entered_room(response):
+            global validated, IS
+
             if "created" in response:
                 if response["created"]:
+                    validated = True
                     render_room_screen()
+                    instructor = True
+                    IS = Instructor_Encoder(2, 20)
+                    IS.start_file_enc('video_1.mp4', 1100, 1500, network)
                 else:
                     room_error_label.set_text("Busy room, choose another name")
             elif "entered" in response:
                 if response["entered"]:
+                    validated = True
                     render_room_screen()
                 else:
                     room_error_label.set_text("No room")
@@ -166,7 +169,7 @@ def validate_login(name, room, create):
             manager = room_screen_manager
 
         if create:
-            network.create_room(name, room, on_response=entered_room)(network)
+            network.create_room(name, room, on_response=entered_room)
         else:
             network.enter_room(name, room, on_response=entered_room)
 
