@@ -146,8 +146,8 @@ def validate_login(name, room, create):
             if "created" in response:
                 if response["created"]:
                     validated = True
-                    render_room_screen()
                     instructor = True
+                    render_room_screen()
                     IS = Instructor_Encoder(2, 20)
                     IS.start_file_enc('video_1.mp4', 1100, 1500, network)
                 else:
