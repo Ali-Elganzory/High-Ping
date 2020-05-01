@@ -49,7 +49,7 @@ class MainNamespace(socketio.ClientNamespace):
         print(data)
 
     def on_screen_update(self, screen_update):
-        print("screen_update")
+        print("screen_update!")
         current_bin_frame = CR.receive_data(screen_update)
-        print(current_bin_frame)
+        # print(current_bin_frame)
         # Draw image on pygame

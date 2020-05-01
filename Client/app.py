@@ -1,8 +1,8 @@
 import pygame
 import pygame_gui
+from vision import Instructor_Encoder
 
 from network import Network
-from vision import Instructor_Encoder
 
 pygame.init()
 
@@ -87,15 +87,17 @@ logout_button = pygame_gui.elements.UIButton(
 background = login_screen_background
 manager = login_screen_manager
 
+validated = False
+instructor = False
+IS = None
+
 
 def run_app():
     global background, manager
+    global validated, instructor, IS
 
     clock = pygame.time.Clock()
     is_running = True
-    validated = False
-    instructor = False
-    IS = None
 
     while is_running:
         time_delta = clock.tick(60) / 1000.0
@@ -141,15 +143,15 @@ def validate_login(name, room, create):
         room_error_label.set_text("Please, enter the room name")
     else:
         def entered_room(response):
-            global validated, IS
+            global validated, instructor, IS
 
             if "created" in response:
                 if response["created"]:
                     validated = True
-                    instructor = True
-                    render_room_screen()
                     IS = Instructor_Encoder(2, 20)
                     IS.start_file_enc('video_1.mp4', 1100, 1500, network)
+                    instructor = True
+                    render_room_screen()
                 else:
                     room_error_label.set_text("Busy room, choose another name")
             elif "entered" in response:
