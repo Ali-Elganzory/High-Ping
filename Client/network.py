@@ -5,8 +5,13 @@ from vision import Client_Reconstructor
 sio = socketio.Client()
 CR = Client_Reconstructor()
 
+draw_screen_update = 0
+
+
 class Network(object):
-    def __init__(self):
+    def __init__(self, update_screen):
+        global draw_screen_update
+        draw_screen_update = update_screen
         sio.register_namespace(MainNamespace('/'))
         try:
             sio.connect('http://localhost:5000')
@@ -49,7 +54,8 @@ class MainNamespace(socketio.ClientNamespace):
         print(data)
 
     def on_screen_update(self, screen_update):
-        print("screen_update!")
+        global draw_screen_update
         current_bin_frame = CR.receive_data(screen_update)
+        draw_screen_update(current_bin_frame)
         # print(current_bin_frame)
         # Draw image on pygame

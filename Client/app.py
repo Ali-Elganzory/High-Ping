@@ -1,8 +1,9 @@
 import pygame
 import pygame_gui
-from vision import Instructor_Encoder
+import numpy as np
 
 from network import Network
+from vision import Instructor_Encoder
 
 pygame.init()
 
@@ -83,6 +84,19 @@ logout_button = pygame_gui.elements.UIButton(
     object_id="logout",
     manager=room_screen_manager)
 
+WIDTH = 638
+HEIGHT = 360
+
+screen_array_ones = np.ones((WIDTH, HEIGHT, 3))
+screen_update_surface = pygame.surfarray.make_surface(0 * np.ones((WIDTH, HEIGHT, 3)))
+
+
+def draw_screen_update(screen_update):
+    global screen_update_surface
+    screen_update_surface = pygame.surfarray.make_surface(
+        255 * screen_array_ones * screen_update.T.reshape((WIDTH, HEIGHT, 1)))
+
+
 #   Manager & background to be rendered
 background = login_screen_background
 manager = login_screen_manager
@@ -126,6 +140,8 @@ def run_app():
         if validated and instructor:
             IS.send_data_file(network)
         window_surface.blit(background, (0, 0))
+        if validated:
+            window_surface.blit(screen_update_surface, (50, 75))
         manager.draw_ui(window_surface)
 
         pygame.display.update()
@@ -147,17 +163,17 @@ def validate_login(name, room, create):
 
             if "created" in response:
                 if response["created"]:
-                    validated = True
+                    render_room_screen()
                     IS = Instructor_Encoder(2, 20)
                     IS.start_file_enc('video_1.mp4', 1100, 1500, network)
+                    validated = True
                     instructor = True
-                    render_room_screen()
                 else:
                     room_error_label.set_text("Busy room, choose another name")
             elif "entered" in response:
                 if response["entered"]:
-                    validated = True
                     render_room_screen()
+                    validated = True
                 else:
                     room_error_label.set_text("No room")
             else:
@@ -177,5 +193,5 @@ def validate_login(name, room, create):
 
 
 if __name__ == "__main__":
-    network = Network()
+    network = Network(update_screen=draw_screen_update)
     run_app()
