@@ -14,6 +14,7 @@ An explanation video can be [found here](https://drive.google.com/open?id=1U0yhN
 
 #### Team
 We are High Ping (an ironic name):
-Kareem Elsawah, Section A. Reducing Redundancies
-Mohamed Sameh,  Section B. Tracking Instructor's Hand
-Ali Ganzory,    Section C. Streaming, Reconstruction, and UI
+
+* Kareem Elsawah, Section A. Reducing Redundancies
+* Mohamed Sameh,  Section B. Tracking Instructor's Hand
+* Ali Ganzory,    Section C. Streaming, Reconstruction, and UI
