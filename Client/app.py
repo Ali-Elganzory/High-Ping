@@ -5,6 +5,13 @@ import numpy as np
 from network import Network
 from vision import Instructor_Encoder
 
+# These are all the variables that you might need to change to test
+drawing_color = True # If true another window will draw the color image with the foreground elements removed
+camera = False # Change to True to use camera instead of local file
+file_name = 'video_2.mp4' # If using local file, location of the file
+start_frame_file = 150 # If using local file, frame to start the video at
+end_frame_file = 2000 # If using local file, frame to stop the video at
+
 pygame.init()
 
 pygame.display.set_caption('High Ping')
@@ -84,17 +91,18 @@ logout_button = pygame_gui.elements.UIButton(
     object_id="logout",
     manager=room_screen_manager)
 
-WIDTH = 638
-HEIGHT = 360
+WIDTH = int(640/1.2)
+HEIGHT = int(360/1.2)
 
 screen_array_ones = np.ones((WIDTH, HEIGHT, 3))
 screen_update_surface = pygame.surfarray.make_surface(0 * np.ones((WIDTH, HEIGHT, 3)))
 
 
-def draw_screen_update(screen_update):
+def draw_screen_update(screen_update,w,h):
+    WIDTH = w
+    HEIGHT = h
     global screen_update_surface
-    screen_update_surface = pygame.surfarray.make_surface(
-        255 * screen_array_ones * screen_update.T.reshape((WIDTH, HEIGHT, 1)))
+    screen_update_surface = pygame.surfarray.make_surface(screen_update.transpose(1,0,2))
 
 
 #   Manager & background to be rendered
@@ -138,13 +146,18 @@ def run_app():
 
         manager.update(time_delta)
         if validated and instructor:
-            IS.send_data_file(network)
+            if camera:
+                IS.send_data_camera()
+            else:
+                IS.send_data_file(network)
         window_surface.blit(background, (0, 0))
         if validated:
             window_surface.blit(screen_update_surface, (50, 75))
         manager.draw_ui(window_surface)
 
         pygame.display.update()
+    if camera:
+        IS.end_camera()
 
 
 def validate_login(name, room, create):
@@ -164,8 +177,11 @@ def validate_login(name, room, create):
             if "created" in response:
                 if response["created"]:
                     render_room_screen()
-                    IS = Instructor_Encoder(2, 20)
-                    IS.start_file_enc('video_1.mp4', 1100, 1500, network)
+                    IS = Instructor_Encoder(2, 20, drawing_color)
+                    if camera:
+                        IS.start_camera_enc(network)
+                    else:
+                        IS.start_file_enc(file_name, start_frame_file, end_frame_file, network)
                     validated = True
                     instructor = True
                 else:
