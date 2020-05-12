@@ -5,6 +5,8 @@ Remove redundant information in the domain of online learning to reduce bandwidt
 #### Instructions
 To run the code you need to download the [model weights](https://drive.google.com/open?id=1A63-SeM1nZeB8d5VfW1cN3j0VSSIj01o) and put them in the Client folder. In the file Client/app.py are all the variables that you might want to change such as using a camera or a local file, and an option to render both a colored and a binarized image.
 
+To run the application, first run Server/app.py to run the server. Then move into the Client directory and run the app.py script.
+
 #### Results
 ![Reduced Frames Examples](results/results.png "Reduced Frames")
 
