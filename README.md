@@ -19,4 +19,4 @@ We are High Ping (an ironic name):
 
 * Kareem Elsawah, Section A. Reducing Redundancies
 * Mohamed Sameh,  Section B. Tracking Instructor's Hand
-* Ali Ganzory,    Section C. Streaming, Reconstruction, and UI
+* Ali Elganzory,  Section C. Streaming, Reconstruction, and UI
